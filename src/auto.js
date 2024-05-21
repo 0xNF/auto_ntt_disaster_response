@@ -3,9 +3,12 @@ function getAllAnswerSections() {
     return  document.getElementsByClassName('ans-form');
 }
 function getSafeAnswer(answerSection) {
-    const inputs = answerSection.getElementsByTagName('input');
-    const first = inputs?.first;
-    return first;
+    const inputs = [...answerSection.getElementsByTagName('input')];
+    if(inputs.length > 0) {
+        const first = inputs[0];
+        return first;    
+    }
+    return null;
 }
 
 function submitForm() {
