@@ -11,21 +11,21 @@ function getSafeAnswer(answerSection) {
     return null;
 }
 
-function submitForm() {
+async function submitForm() {
     document.getElementById('btn-regist').click();
-    setTimeout(() => {
-        document.getElementById('btn-confirm-ok').click();
-      }, 1000);
+    await new Promise(resolve => setTimeout(resolve, 3000)) 
+    document.getElementById('btn-confirm-ok').click();
+    await new Promise(resolve => setTimeout(resolve, 3000)) 
 }
 
 
-function main() {
+async function main() {
     const answerForms = getAllAnswerSections();
     for(const form of answerForms) {
         const safe = getSafeAnswer(form);
         safe?.click();
     }
-    submitForm();
+    await submitForm();
 }
 
 main();

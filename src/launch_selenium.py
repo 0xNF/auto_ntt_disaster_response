@@ -21,6 +21,12 @@ def load_script():
         s = f.read()
         return s
     
+# Function to print console logs
+def print_console_logs(driver: webdriver):
+    logs = driver.get_log('browser')
+    for log in logs:
+        print(log['message'])
+    
 def launch_browser(url: str):
     script = load_script()
     page = url
@@ -28,12 +34,16 @@ def launch_browser(url: str):
         page = f'https://{page}'
     driver = init()
     # Navigate to a website
+    print("Opening page...")
     driver.get(page)
      # Perform some automation tasks
     title = driver.title
     print("Title of the webpage:", title)
 
+    print("Getting console.logs")
     driver.execute_script(script)
+
+    # print_console_logs(driver)
 
     # Close the WebDriver when done
     driver.quit()
